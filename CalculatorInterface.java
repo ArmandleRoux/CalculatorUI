@@ -7,13 +7,20 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class CalculatorInterface extends Application {
   String input = "";
 
+  /**
+   * Starts application and builds the stage.
+   *
+   * @param primaryStage
+   * @throws Exception
+   */
   @Override
   public void start(Stage primaryStage) throws Exception {
     TextField eqTF = new TextField();
@@ -63,7 +70,7 @@ public class CalculatorInterface extends Application {
     one.setOnAction(actionEvent -> {
       if(eq.get()){
         eq.set(false);
-        CalculatorInterface.clearFields(eqTF, ansTF);
+        CalculatorInterface.clearFields(Arrays.asList(eqTF, ansTF));
       }
       input += "1";
       eqTF.setText(input);
@@ -71,7 +78,7 @@ public class CalculatorInterface extends Application {
     two.setOnAction(actionEvent -> {
       if(eq.get()){
         eqTF.setText("");
-        CalculatorInterface.clearFields(eqTF, ansTF);
+        CalculatorInterface.clearFields(Arrays.asList(eqTF, ansTF));
       }
       input += "2";
       eqTF.setText(input);
@@ -79,7 +86,7 @@ public class CalculatorInterface extends Application {
     three.setOnAction(actionEvent -> {
       if(eq.get()){
         eq.set(false);
-        CalculatorInterface.clearFields(eqTF, ansTF);
+        CalculatorInterface.clearFields(Arrays.asList(eqTF, ansTF));
       }
       input += "3";
       eqTF.setText(input);
@@ -87,7 +94,7 @@ public class CalculatorInterface extends Application {
     four.setOnAction(actionEvent -> {
       if(eq.get()){
         eq.set(false);
-        CalculatorInterface.clearFields(eqTF, ansTF);
+        CalculatorInterface.clearFields(Arrays.asList(eqTF, ansTF));
       }
       input += "4";
       eqTF.setText(input);
@@ -95,7 +102,7 @@ public class CalculatorInterface extends Application {
     five.setOnAction(actionEvent -> {
       if(eq.get()){
         eq.set(false);
-        CalculatorInterface.clearFields(eqTF, ansTF);
+        CalculatorInterface.clearFields(Arrays.asList(eqTF, ansTF));
       }
       input += "5";
       eqTF.setText(input);
@@ -103,7 +110,7 @@ public class CalculatorInterface extends Application {
     six.setOnAction(actionEvent -> {
       if(eq.get()){
         eq.set(false);
-        CalculatorInterface.clearFields(eqTF, ansTF);
+        CalculatorInterface.clearFields(Arrays.asList(eqTF, ansTF));
       }
       input += "6";
       eqTF.setText(input);
@@ -111,7 +118,7 @@ public class CalculatorInterface extends Application {
     seven.setOnAction(actionEvent -> {
       if(eq.get()){
         eq.set(false);
-        CalculatorInterface.clearFields(eqTF, ansTF);
+        CalculatorInterface.clearFields(Arrays.asList(eqTF, ansTF));
       }
       input += "7";
       eqTF.setText(input);
@@ -119,7 +126,7 @@ public class CalculatorInterface extends Application {
     eight.setOnAction(actionEvent -> {
       if(eq.get()){
         eq.set(false);
-        CalculatorInterface.clearFields(eqTF, ansTF);
+        CalculatorInterface.clearFields(Arrays.asList(eqTF, ansTF));
       }
       input += "8";
       eqTF.setText(input);
@@ -127,7 +134,7 @@ public class CalculatorInterface extends Application {
     nine.setOnAction(actionEvent -> {
       if(eq.get()){
         eq.set(false);
-        CalculatorInterface.clearFields(eqTF, ansTF);
+        CalculatorInterface.clearFields(Arrays.asList(eqTF, ansTF));
       }
       input += "9";
       eqTF.setText(input);
@@ -135,7 +142,7 @@ public class CalculatorInterface extends Application {
     zero.setOnAction(actionEvent -> {
       if(eq.get()){
         eq.set(false);
-        CalculatorInterface.clearFields(eqTF, ansTF);
+        CalculatorInterface.clearFields(Arrays.asList(eqTF, ansTF));
       }
       input += "0";
       eqTF.setText(input);
@@ -143,7 +150,7 @@ public class CalculatorInterface extends Application {
     plus.setOnAction(actionEvent -> {
       if(eq.get()){
         eq.set(false);
-        CalculatorInterface.clearFields(eqTF, ansTF);
+        CalculatorInterface.clearFields(Arrays.asList(eqTF, ansTF));
       }
       input += " + ";
       eqTF.setText(input);
@@ -151,7 +158,7 @@ public class CalculatorInterface extends Application {
     minus.setOnAction(actionEvent -> {
       if(eq.get()){
         eq.set(false);
-        CalculatorInterface.clearFields(eqTF, ansTF);
+        CalculatorInterface.clearFields(Arrays.asList(eqTF, ansTF));
       }
       input += " - ";
       eqTF.setText(input);
@@ -159,7 +166,7 @@ public class CalculatorInterface extends Application {
     divide.setOnAction(actionEvent -> {
       if(eq.get()){
         eq.set(false);
-        CalculatorInterface.clearFields(eqTF, ansTF);
+        CalculatorInterface.clearFields(Arrays.asList(eqTF, ansTF));
       }
       input += " / ";
       eqTF.setText(input);
@@ -167,20 +174,20 @@ public class CalculatorInterface extends Application {
     multiply.setOnAction(actionEvent -> {
       if(eq.get()){
         eq.set(false);
-        CalculatorInterface.clearFields(eqTF, ansTF);
+        CalculatorInterface.clearFields(Arrays.asList(eqTF, ansTF));
       }
       input += " x ";
       eqTF.setText(input);
     });
     equal.setOnAction(actionEvent -> {
-      String input = eqTF.getText();
+      input = eqTF.getText();
       eq.set(true);
-      ansTF.setText(String.valueOf(CalculateSum(input)));
+      ansTF.setText(String.valueOf(CalculateEq(input)));
     });
     clearField.setOnAction(actionEvent -> {
       input = "";
       eq.set(false);
-      CalculatorInterface.clearFields(eqTF, ansTF);
+      CalculatorInterface.clearFields(Arrays.asList(eqTF, ansTF));
     });
 
     GridPane grid = new GridPane();
@@ -198,33 +205,45 @@ public class CalculatorInterface extends Application {
     primaryStage.show();
   }
 
-  private static void clearFields(TextField tf1, TextField tf2){
-    tf1.clear();
-    tf2.clear();
+  /**
+   * Clears all TextFields in a given List.
+   *
+   * @param textFields
+   */
+  private static void clearFields(List<TextField> textFields){
+    for(TextField tf : textFields){
+      tf.clear();
+    }
   }
 
-  private float CalculateSum(String input){
-    String[] sum = input.split(" ");
-    float total = Float.parseFloat(sum[0]);
+  /**
+   * Calculate the total of an equation between two numbers.
+   *
+   * @param input
+   * @return total
+   */
+  private float CalculateEq(String input){
+    String[] equation = input.split(" ");
+    float total = Float.parseFloat(equation[0]);
 
-    if (sum.length > 3) {
+    if (equation.length > 3) {
       return 0;
     }
-    for (int i = 0; i < sum.length; i++) {
-      if (sum[i].equals("x")) {
-        total = total * Float.parseFloat(sum[i + 1]);
+    for (int i = 0; i < equation.length; i++) {
+      if (equation[i].equals("x")) {
+        total = total * Float.parseFloat(equation[i + 1]);
         i++;
       }
-      if (sum[i].equals("/")) {
-        total = total / Float.parseFloat(sum[i + 1]);
+      if (equation[i].equals("/")) {
+        total = total / Float.parseFloat(equation[i + 1]);
         i++;
       }
-      if (sum[i].equals("+")) {
-        total = total + Float.parseFloat(sum[i + 1]);
+      if (equation[i].equals("+")) {
+        total = total + Float.parseFloat(equation[i + 1]);
         i++;
       }
-      if (sum[i].equals("-")) {
-        total = total - Float.parseFloat(sum[i + 1]);
+      if (equation[i].equals("-")) {
+        total = total - Float.parseFloat(equation[i + 1]);
         i++;
       }
 
